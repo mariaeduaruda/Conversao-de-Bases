@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+
+// Função que converte um número decimal em binário
+void dec2bin(int num) {
+    int bin[32], i=0, j;
+    while (num > 0) {
+        bin[i++] = num % 2;
+        num = num / 2;
+    }
+    printf("Em binário: ");
+    for (j=i-1; j>=0; j--)
+        printf("%d", bin[j]);
+}
+
+// Função que converte um número binário em decimal
+void bin2dec(char num[]) {
+    int dec = 0, i, j, base = 1;
+    for (i=strlen(num)-1; i>=0; i--) {
+        if (num[i] == '1')
+            dec += base;
+        base = base * 2;
+    }
+    printf("Em decimal: %d", dec);
+}
+
+int main() {
+    int opcao, num;
+    char bin[32];
+    while (1) {
+        printf("Escolha uma opção:\n");
+        printf("1. Decimal para binário\n");
+        printf("2. Binário para decimal\n");
+        printf("0. Sair\n");
+        scanf("%d", &opcao);
+        switch(opcao) {
+            case 1:
+                printf("Digite um número decimal: ");
+                scanf("%d", &num);
+                dec2bin(num);
+                printf("\n");
+                break;
+            case 2:
+                printf("Digite um número binário: ");
+                scanf("%s", bin);
+                bin2dec(bin);
+                printf("\n");
+                break;
+            case 0:
+                return 0;
+            default:
+                printf("Opção inválida.\n");
+        }
+    }
+    return 0;
+}
